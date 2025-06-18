@@ -8,25 +8,30 @@
 import SwiftUI
 
 struct HeaderView: View {
+    var titleText : String
+    var subText : String
+    var color : Color = Color(.blue)
+    
     var body: some View {
         GeometryReader{geometry in
             ZStack{
                 Rectangle()
-                    .foregroundStyle(Color(red: 21/255, green: 26/255, blue: 28/255))
+                    .foregroundStyle(color)
                     .frame(width: geometry.size.width, height: 250)
                 
                 VStack{
-                    
-                    Text("To Do List")
+                    Spacer()
+                    Spacer()
+                    Text(titleText)
                         .font(.system(size: 50))
                         .foregroundStyle(.white)
                         .bold()
-                    
-                    Text("Get things Done")
+                        
+                    Text(subText)
                         .font(.system(size: 30))
                         .foregroundStyle(.white)
+                    Spacer()
                 }
-                
             }
         }
         .frame(height: 250)
@@ -34,5 +39,5 @@ struct HeaderView: View {
 }
 
 #Preview {
-    HeaderView()
+    HeaderView(titleText: "To Do List", subText: "Get things Done", color: Color(red: 31/255, green: 38/255, blue: 42/255))
 }

@@ -14,7 +14,7 @@ struct LoginView: View {
         NavigationStack{
             VStack{
                 // Header
-                HeaderView()
+                HeaderView(titleText: "To Do List", subText: "Get Things Done", color: Color(red: 31/255, green: 38/255, blue: 42/255))
                 
                 Spacer()
                 
@@ -41,9 +41,10 @@ struct LoginView: View {
                             Text("Log In")
                                 .foregroundStyle(.white)
                                 .bold()
-                            
                         }
                     }
+                    .padding(.top)
+                    
                     Spacer()
                 }
                 .frame(width: 400, height: 300)

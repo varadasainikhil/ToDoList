@@ -8,8 +8,59 @@
 import SwiftUI
 
 struct SignUpView: View {
+    @State var name = ""
+    @State var email = ""
+    @State var password = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            // Header
+            HeaderView(titleText: "Register", subText: "Start organizing ToDos", color: Color(red: 42/255, green: 52/255, blue: 57/255))
+            
+            Spacer()
+            
+            // SignUp Form
+            VStack{
+                
+                TextField("Enter Name", text: $name)
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+                    .foregroundStyle(Color(red: 21/255, green: 26/255, blue: 28/255))
+                
+                TextField("Enter Email", text: $email)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.horizontal)
+                    .padding(.bottom)
+                    .foregroundStyle(Color(red: 21/255, green: 26/255, blue: 28/255))
+                
+                SecureField("Enter Password", text: $password)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.horizontal)
+                    .padding(.bottom)
+                
+                Button{
+                    // Attempt Sign Up
+                } label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 15)
+                            .foregroundStyle(Color(red: 21/255, green: 26/255, blue: 28/255))
+                            .frame(width: 250, height: 45)
+                        
+                        Text("Sign Up")
+                            .foregroundStyle(.white)
+                            .bold()
+                    }
+                }
+                .padding(.top)
+                
+                Spacer()
+            }
+            .frame(width: 400, height: 300)
+            
+            Spacer()
+            Spacer()
+        }
+        .ignoresSafeArea()
     }
 }
 
