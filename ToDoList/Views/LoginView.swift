@@ -30,19 +30,10 @@ struct LoginView: View {
                         .padding(.horizontal)
                         .padding(.bottom)
                     
-                    Button{
-                        // Attempt login
-                    } label: {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 15)
-                                .foregroundStyle(Color(red: 21/255, green: 26/255, blue: 28/255))
-                                .frame(width: 250, height: 45)
-                            
-                            Text("Log In")
-                                .foregroundStyle(.white)
-                                .bold()
-                        }
-                    }
+                    TLButtonView(title: "Log In", backgroundColor:Color(red: 21/255, green: 26/255, blue: 28/255) , action: {
+                        // Attempt Log In
+                    })
+                    .frame(width: 250, height: 45)
                     .padding(.top)
                     
                     Spacer()

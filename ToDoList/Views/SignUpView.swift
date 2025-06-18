@@ -22,7 +22,7 @@ struct SignUpView: View {
             // SignUp Form
             VStack{
                 
-                TextField("Enter Name", text: $name)
+                TextField("Enter Full Name", text: $name)
                     .textFieldStyle(.roundedBorder)
                     .padding()
                     .foregroundStyle(Color(red: 21/255, green: 26/255, blue: 28/255))
@@ -38,19 +38,11 @@ struct SignUpView: View {
                     .padding(.horizontal)
                     .padding(.bottom)
                 
-                Button{
+                TLButtonView(title: "Sign Up", backgroundColor: Color(red: 42/255, green: 52/255, blue: 57/255)){
                     // Attempt Sign Up
-                } label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 15)
-                            .foregroundStyle(Color(red: 21/255, green: 26/255, blue: 28/255))
-                            .frame(width: 250, height: 45)
-                        
-                        Text("Sign Up")
-                            .foregroundStyle(.white)
-                            .bold()
+                    
                     }
-                }
+                .frame(width: 250, height: 45)
                 .padding(.top)
                 
                 Spacer()
