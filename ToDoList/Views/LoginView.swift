@@ -20,11 +20,15 @@ struct LoginView: View {
                 // Login Form
                 VStack{
                     TextField("Enter Email", text: $viewModel.email)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
                         .textFieldStyle(.roundedBorder)
                         .padding()
                         .foregroundStyle(Color(red: 21/255, green: 26/255, blue: 28/255))
                     
                     SecureField("Enter Password", text: $viewModel.password)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
                         .textFieldStyle(.roundedBorder)
                         .padding(.horizontal)
                         .padding(.bottom)

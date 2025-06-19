@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @State var name = ""
-    @State var email = ""
-    @State var password = ""
+    @State var viewModel = SignupViewViewModel()
     
     var body: some View {
         VStack{
@@ -22,25 +20,31 @@ struct SignUpView: View {
             // SignUp Form
             VStack{
                 
-                TextField("Enter Full Name", text: $name)
+                TextField("Enter Full Name", text: $viewModel.name)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
                     .textFieldStyle(.roundedBorder)
                     .padding()
                     .foregroundStyle(Color(red: 21/255, green: 26/255, blue: 28/255))
                 
-                TextField("Enter Email", text: $email)
+                TextField("Enter Email", text: $viewModel.email)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
                     .padding(.bottom)
                     .foregroundStyle(Color(red: 21/255, green: 26/255, blue: 28/255))
                 
-                SecureField("Enter Password", text: $password)
+                SecureField("Enter Password", text: $viewModel.password)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
                     .padding(.bottom)
                 
                 TLButtonView(title: "Sign Up", backgroundColor: Color(red: 42/255, green: 52/255, blue: 57/255)){
                     // Attempt Sign Up
-                    
+                    viewModel.signUp()
                     }
                 .frame(width: 250, height: 45)
                 .padding(.top)

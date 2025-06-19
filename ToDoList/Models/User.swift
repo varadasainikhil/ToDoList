@@ -8,9 +8,8 @@
 import Foundation
 
 struct User : Codable {
-    let uid : String
+    let id : String
     let name : String
-    let joinDate : Date
+    let joinDate : TimeInterval
     let email : String
-    let password : String
 }

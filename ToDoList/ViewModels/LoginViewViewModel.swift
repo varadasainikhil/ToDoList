@@ -26,17 +26,18 @@ class LoginViewViewModel {
         }
         // Logging in
         Auth.auth().signIn(withEmail: email, password: password){ result, error in
-            guard error != nil else {
+            guard error == nil else {
                 self.errorMessage = error!.localizedDescription
                 return
             }
+            print("User with user id: \(result?.user.uid ?? "Unknown User id") has logged in.")
             
         }
         
     }
 
     
-    func validate() -> Bool {
+    private func validate() -> Bool {
         guard !email.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else{
             errorMessage = "Email field is empty."
             showingAlert = true
