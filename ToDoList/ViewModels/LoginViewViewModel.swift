@@ -28,10 +28,13 @@ class LoginViewViewModel {
         Auth.auth().signIn(withEmail: email, password: password){ result, error in
             guard error == nil else {
                 self.errorMessage = error!.localizedDescription
+                self.showingAlert = true
                 return
             }
             print("User with user id: \(result?.user.uid ?? "Unknown User id") has logged in.")
-            
+            // Clear the form after successful login
+            self.email = ""
+            self.password = ""
         }
         
     }

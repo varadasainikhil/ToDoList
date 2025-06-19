@@ -9,11 +9,11 @@ import FirebaseAuth
 import SwiftUI
 
 struct MainView: View {
-    var viewModel = MainViewViewModel()
+    @State var viewModel = MainViewViewModel()
     
     var body: some View {
         NavigationStack{
-            if viewModel.isSignedIn, !viewModel.currentUserId.isEmpty{
+            if viewModel.isSignedIn{
                 TabView {
                     Tab("Home", systemImage: "house") {
                         ToDoListView(userId : viewModel.currentUserId)

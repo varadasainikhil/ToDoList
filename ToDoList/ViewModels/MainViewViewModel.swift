@@ -11,15 +11,13 @@ import Foundation
 @Observable
 class MainViewViewModel {
     var currentUserId : String = ""
+    var isSignedIn : Bool = false
     private var handler : AuthStateDidChangeListenerHandle? = nil
     
     init(){
         self.handler = Auth.auth().addStateDidChangeListener{ auth, user in
             self.currentUserId = user?.uid ?? ""
+            self.isSignedIn = user != nil
         }
-    }
-    
-    public var isSignedIn : Bool{
-        return Auth.auth().currentUser != nil
     }
 }

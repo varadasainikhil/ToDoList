@@ -19,6 +19,10 @@ struct ProfileView: View {
         NavigationStack{
             VStack{
                 Text("Hello World")
+                TLButtonView(title: "Log Out", backgroundColor: Color(red: 21/255, green: 26/255, blue: 28/255)) {
+                    // Log Out Functionality
+                    viewModel.logOut()
+                }
             }
             .navigationTitle("Account")
         }

@@ -9,6 +9,8 @@ import Foundation
 
 @Observable
 class ToDoListViewViewModel {
+    var showingSheet = false
+    
     init(){
         
     }
