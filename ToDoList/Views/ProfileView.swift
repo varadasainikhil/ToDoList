@@ -18,13 +18,45 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                Text("Hello World")
+                Spacer()
+                Image(systemName: "person.circle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 250)
+                
+                Spacer()
+                Text("Name : \(viewModel.currentUser?.name ?? "Loading user data.")")
+                Text("Email : \(viewModel.currentUser?.email ?? "Loading user data.")")
+                if viewModel.currentUser != nil{
+                    Text("joinedAt : \(viewModel.currentUser!.joinDate)")
+                }
+                else{
+                    Text("joinedAt : Loading user data.")
+
+                }
+                
+                
+                
+                
+                Spacer()
                 TLButtonView(title: "Log Out", backgroundColor: Color(red: 21/255, green: 26/255, blue: 28/255)) {
                     // Log Out Functionality
                     viewModel.logOut()
                 }
+                .frame(width: 250, height: 45)
+                Spacer()
             }
             .navigationTitle("Account")
+            .onAppear {
+                Task{
+                    do{
+                        try await viewModel.getUserInfo(userId: userId)
+                    }
+                    catch{
+                        print(error.localizedDescription)
+                    }
+                }
+            }
         }
     }
 }

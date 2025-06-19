@@ -6,10 +6,13 @@
 //
 
 import FirebaseAuth
+import FirebaseFirestore
 import Foundation
 
 @Observable
 class ProfileViewViewModel{
+    let db = Firestore.firestore()
+    var currentUser : User?
     init(){
         
     }
@@ -23,5 +26,12 @@ class ProfileViewViewModel{
             print(error.localizedDescription)
         }
         
+    }
+    
+    func getUserInfo(userId : String) async throws{
+        let docRef = db.collection("users").document(userId)
+        let user = try await docRef.getDocument(as: User.self)
+        print("User with name \(user.name) has been retrieved.")
+        currentUser = user
     }
 }

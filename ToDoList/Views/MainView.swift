@@ -12,21 +12,19 @@ struct MainView: View {
     @State var viewModel = MainViewViewModel()
     
     var body: some View {
-        NavigationStack{
-            if viewModel.isSignedIn{
-                TabView {
-                    Tab("Home", systemImage: "house") {
-                        ToDoListView(userId : viewModel.currentUserId)
-                    }
-                    
-                    Tab("Account", systemImage: "person") {
-                        ProfileView(userId : viewModel.currentUserId)
-                    }
+        if viewModel.isSignedIn{
+            TabView {
+                Tab("Home", systemImage: "house") {
+                    ToDoListView(userId : viewModel.currentUserId)
                 }
                 
-            } else {
-                LoginView()
+                Tab("Account", systemImage: "person") {
+                    ProfileView(userId : viewModel.currentUserId)
+                }
             }
+            
+        } else {
+            LoginView()
         }
     }
 }
