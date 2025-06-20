@@ -22,19 +22,26 @@ struct ToDoListView: View {
         NavigationStack{
             List(toDoArray){toDo in
                 ToDoListItemView(toDo: toDo)
-                
-            }
-            .toolbar {
-                Button{
-                    //Action
-                    viewModel.showingSheet = true
-                } label: {
-                    Image(systemName: "plus.circle")
-                }
+                    .swipeActions {
+                        Button("Delete", role: .destructive){
+                            Task{
+                                await viewModel.deleteToDoListItem(documentId: toDo.id ?? "")
+                            }
+                        }
+                    }
             }
             .navigationTitle("To Do List")
             .sheet(isPresented: $viewModel.showingSheet) {
                 NewItemView()
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        viewModel.showingSheet = true
+                    } label: {
+                        Image(systemName: "plus.circle")
+                    }
+                }
             }
         }
     }
