@@ -13,4 +13,5 @@ struct ToDoListItem : Identifiable, Codable{
     var title : String
     var description : String
     var date : Date
+    var isCompleted : Bool
 }

@@ -11,7 +11,7 @@ import Foundation
 
 @Observable
 class ProfileViewViewModel{
-    let db = Firestore.firestore()
+    private let db = Firestore.firestore()
     var currentUser : User?
     
     init(){

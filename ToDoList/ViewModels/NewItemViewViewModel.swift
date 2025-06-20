@@ -16,8 +16,8 @@ class NewItemViewViewModel{
     var date : Date = Date.now
     var errorMessage : String = ""
     var showingError : Bool = false
-    let db = Firestore.firestore()
-    let currentUserId = Auth.auth().currentUser?.uid
+    private let db = Firestore.firestore()
+    private let currentUserId = Auth.auth().currentUser?.uid
     
     init(){
         
@@ -42,13 +42,14 @@ class NewItemViewViewModel{
         guard validate() else{
             return false
         }
-        let toDo = ToDoListItem(title: title, description: description, date: date)
+        let toDo = ToDoListItem(title: title, description: description, date: date, isCompleted: false)
         do{
             try await updateDatabase(toDo: toDo)
         }
         catch{
             print("Could not update the Database.")
         }
+        
         return true
     }
     
