@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct NewItemView: View {
+    @State var viewModel = NewItemViewViewModel()
     var body: some View {
         NavigationStack{
             VStack{
-                
             }
             .navigationTitle("Add a new Task")
         }

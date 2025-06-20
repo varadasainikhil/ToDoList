@@ -28,7 +28,7 @@ struct ProfileView: View {
                 Text("Name : \(viewModel.currentUser?.name ?? "Loading user data.")")
                 Text("Email : \(viewModel.currentUser?.email ?? "Loading user data.")")
                 if viewModel.currentUser != nil{
-                    Text("joinedAt : \(viewModel.currentUser!.joinDate)")
+                    Text("Joined : \(viewModel.currentUser!.joinDate.formatted(date: .complete, time: .omitted))")
                 }
                 else{
                     Text("joinedAt : Loading user data.")

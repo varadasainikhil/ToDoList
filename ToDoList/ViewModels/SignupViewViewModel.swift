@@ -60,7 +60,7 @@ class SignupViewViewModel{
     }
     
     private func insertUserRecord(id: String){
-        let newUser = User(id: id, name: name, joinDate: Date().timeIntervalSince1970, email: email)
+        let newUser = User(id: id, name: name, joinDate: Date.now, email: email)
         let db = Firestore.firestore()
         do{
             try db.collection("users").document(id).setData(from: newUser)

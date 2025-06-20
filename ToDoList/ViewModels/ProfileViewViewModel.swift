@@ -13,6 +13,7 @@ import Foundation
 class ProfileViewViewModel{
     let db = Firestore.firestore()
     var currentUser : User?
+    
     init(){
         
     }
@@ -25,7 +26,6 @@ class ProfileViewViewModel{
             print("User cannot be signed out.")
             print(error.localizedDescription)
         }
-        
     }
     
     func getUserInfo(userId : String) async throws{

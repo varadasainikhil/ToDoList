@@ -10,6 +10,6 @@ import Foundation
 struct User : Codable {
     let id : String
     let name : String
-    let joinDate : TimeInterval
+    let joinDate : Date
     let email : String
 }
