@@ -15,13 +15,14 @@ struct ToDoListView: View {
     
     init(userId:String){
         self.userId = userId
-        self._toDoArray = FirestoreQuery(collectionPath: "users/\(userId)/todos", predicates: [.orderBy("date", false)])
+        self._toDoArray = FirestoreQuery(collectionPath: "users/\(userId)/todos", predicates: [.orderBy("isCompleted", true),.orderBy("date", false)])
     }
     
     var body: some View {
         NavigationStack{
             List(toDoArray){toDo in
                 ToDoListItemView(toDo: toDo)
+                    .strikethrough(toDo.isCompleted, color: .black)
                     .swipeActions {
                         Button("Delete", role: .destructive){
                             Task{
