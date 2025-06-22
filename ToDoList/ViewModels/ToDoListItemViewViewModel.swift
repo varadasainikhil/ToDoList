@@ -12,13 +12,20 @@ import Foundation
 @Observable
 class ToDoListItemViewViewModel{
     private let db = Firestore.firestore()
+    init(){
     
-    init(){}
+    }
     
-    func markIsCompleted(toDoId : String) async{
+    func getUserId() -> String{
         guard let userId = Auth.auth().currentUser?.uid else {
-            return
+            return ""
         }
+        return userId
+    }
+    
+    func getToDo(toDoId : String) async -> ToDoListItem?{
+        let userId = getUserId()
+        
         let docRef = db.collection("users").document(userId).collection("todos").document(toDoId)
         
         do{
@@ -26,16 +33,30 @@ class ToDoListItemViewViewModel{
             if document.exists{
                 
                 let tempToDo = try document.data(as: ToDoListItem.self)
-                try await docRef.updateData(["isCompleted":tempToDo.isCompleted == true ? false : true])
-                
+                return tempToDo
             }
         }
         catch{
             print(error.localizedDescription)
         }
+        return nil
+    }
+    
+    func markIsCompleted(toDoId : String) async{
         
-        
-        
-        print("ToDo marked completed successfully.")
+        do{
+            let userId = getUserId()
+            let tempToDo = await getToDo(toDoId: toDoId)
+            guard tempToDo != nil else{
+                print("Cannot fetch ToDo Object.")
+                return
+            }
+            let docRef = db.collection("users").document(userId).collection("todos").document(toDoId)
+            try await docRef.updateData(["isCompleted":tempToDo!.isCompleted == true ? false : true])
+        }
+        catch{
+            print(error.localizedDescription)
+        }
+        print("ToDo is marked completed or incomplete.")
     }
 }

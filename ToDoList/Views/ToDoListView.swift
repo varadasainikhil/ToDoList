@@ -51,6 +51,3 @@ struct ToDoListView: View {
 #Preview {
     ToDoListView(userId: "yqWUeuWSCyUAEjUS7GE0mLIyd9h1")
 }
-
-//TODO: 1. Implement swipe to delete functionality for ToDos
-//TODO: 2. Implement the ordering and filtering for ToDos, completed ToDos must be filtered first and then the incompleted ones.
